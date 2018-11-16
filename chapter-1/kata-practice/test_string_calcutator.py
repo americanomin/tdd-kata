@@ -57,3 +57,10 @@ class TestStringCalculator(object):
 
         # assert
         assert result == 2
+
+    def test_add_대괄호가_포함되어_있는_경우_길이가_1보다_큰_구분자를_사용할_수_있다(self):
+        # act
+        result = self.string_calculator.add('//[***]\n1***2***3')
+
+        # assert
+        assert result == 6

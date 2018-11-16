@@ -11,9 +11,16 @@ class StringCalculator(object):
         delimeter = self.DEFAULT_DELIMETER
 
         if numbers[:2] == self.DIFFRENT_DELIMETER_SEPARATOR:
-            numbers = numbers.replace(self.DIFFRENT_DELIMETER_SEPARATOR, '')
-            delimeter = numbers[0]
-            numbers = numbers[2:]
+            numbers = numbers.replace(self.DIFFRENT_DELIMETER_SEPARATOR,'')
+            new_line_index = numbers.index(self.NEW_LINE_DELIMETER)
+            candidate_for_separator = numbers[:new_line_index]
+
+            if candidate_for_separator.startswith('[') and candidate_for_separator.endswith(']'):
+                delimeter = numbers[0:5][1:-1]
+            else:
+                delimeter = numbers[0]
+
+            numbers = numbers[new_line_index+1:]
 
         sum = self.__get_sum(delimeter, numbers)
 
@@ -45,6 +52,7 @@ class StringCalculator(object):
             clean_numbers.append(number)
 
         return delimeter.join(clean_numbers)
+
 
 class ValidationError(Exception):
     def __init__(self, message, errors):
