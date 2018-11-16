@@ -1,3 +1,6 @@
+import re
+
+
 class StringCalculator(object):
     DEFAULT_DELIMETER = ','
     NEW_LINE_DELIMETER = '\n'
@@ -15,16 +18,24 @@ class StringCalculator(object):
             new_line_index = numbers.index(self.NEW_LINE_DELIMETER)
             candidate_for_separator = numbers[:new_line_index]
 
-            if candidate_for_separator.startswith('[') and candidate_for_separator.endswith(']'):
-                delimeter = numbers[0:5][1:-1]
-            else:
+            seperators_in_bracket = self.__get_seperators_in_bracket(candidate_for_separator)
+
+            if not seperators_in_bracket:
                 delimeter = numbers[0]
 
             numbers = numbers[new_line_index+1:]
 
+            if seperators_in_bracket:
+                for another_long_delimeter in seperators_in_bracket:
+                    numbers = numbers.replace(another_long_delimeter, delimeter)
+
+
         sum = self.__get_sum(delimeter, numbers)
 
         return sum % self.MAX_NUMBER_FOR_IGNORE
+
+    def __get_seperators_in_bracket(self, candidate_for_separator):
+        return re.compile('\[(.+?)\]').findall(candidate_for_separator)
 
     def __get_sum(self, delimeter, numbers):
         clean_numbers = self.__get_clean_numbers(delimeter, numbers)

@@ -64,3 +64,10 @@ class TestStringCalculator(object):
 
         # assert
         assert result == 6
+
+    def test_add_대괄호_구분자가_2개이상인_경우_구분자를_여러개로_사용할_수_있다(self):
+        # act
+        result = self.string_calculator.add('//[*][%]\n1*2%3')
+
+        # assert
+        assert result == 6
