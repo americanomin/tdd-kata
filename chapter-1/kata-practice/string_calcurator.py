@@ -2,6 +2,7 @@ class StringCalculator(object):
     DEFAULT_DELIMETER = ','
     NEW_LINE_DELIMETER = '\n'
     DIFFRENT_DELIMETER_SEPARATOR = '//'
+    MAX_NUMBER_FOR_IGNORE = 1000
 
     def add(self, numbers):
         if not numbers:
@@ -14,6 +15,11 @@ class StringCalculator(object):
             delimeter = numbers[0]
             numbers = numbers[2:]
 
+        sum = self.__get_sum(delimeter, numbers)
+
+        return sum % self.MAX_NUMBER_FOR_IGNORE
+
+    def __get_sum(self, delimeter, numbers):
         clean_numbers = self.__get_clean_numbers(delimeter, numbers)
 
         sum = 0

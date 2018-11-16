@@ -50,3 +50,10 @@ class TestStringCalculator(object):
     def test_add_음수를_전달한_경우_에러를_내뱉는다(self):
         with pytest.raises(ValidationError):
             self.string_calculator.add('-1')
+
+    def test_add_숫자가_1000보다_큰_경우_1000이라는_숫자는_무시된다(self):
+        # act
+        result = self.string_calculator.add('1002')
+
+        # assert
+        assert result == 2
