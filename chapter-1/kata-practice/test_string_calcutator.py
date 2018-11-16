@@ -39,3 +39,10 @@ class TestStringCalculator(object):
     def test_add_콤마뒤에_바로_띄어쓰기가_있는_경우_에러를_내뱉는다(self):
         with pytest.raises(ValidationError):
             self.string_calculator.add('1,\n')
+
+    def test_add_역슬래쉬_두개_이후에_기호가_들어가있는_경우_해당_기호로_문자열을_파싱한다(self):
+        # act
+        result = self.string_calculator.add('//;\n1;2')
+
+        # assert
+        assert result == 3
