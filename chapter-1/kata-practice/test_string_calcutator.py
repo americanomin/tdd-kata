@@ -46,3 +46,7 @@ class TestStringCalculator(object):
 
         # assert
         assert result == 3
+
+    def test_add_음수를_전달한_경우_에러를_내뱉는다(self):
+        with pytest.raises(ValidationError):
+            self.string_calculator.add('-1')
