@@ -1,3 +1,5 @@
+import pytest
+
 from string_calcurator import *
 
 
@@ -26,3 +28,14 @@ class TestStringCalculator(object):
 
         # assert
         assert result == 3
+
+    def test_add_숫자로된_문자열에_띄어쓰기가_포함되어있는_경우_숫자를_모두_더한_값을_리턴한다(self):
+        # act
+        result = self.string_calculator.add('1\n2,3')
+
+        # assert
+        assert result == 6
+
+    def test_add_콤마뒤에_바로_띄어쓰기가_있는_경우_에러를_내뱉는다(self):
+        with pytest.raises(ValidationError):
+            self.string_calculator.add('1,\n')
