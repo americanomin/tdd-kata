@@ -22,7 +22,7 @@ stop here if you are a beginner. Continue if you can finish the steps so far in 
 9. make sure you can also handle multiple delimiters with length longer than one char
 
 #### 결과 스크린샷
-![Screenshot](../kata-practice/kata-1-string-calculator-screenshot.png)
+![Screenshot](/chapter-1/kata-practice/kata-1-string-calculator-screenshot.png)
 
 #### 참고 링크
 http://osherove.com/tdd-kata-1/
