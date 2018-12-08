@@ -1,6 +1,4 @@
-### TDD KATA 스터디 1주차
-
-### 1주차 KATA 문제
+## 1차 KATA 문제
 #### String Calculator 문제 
 1. Create a simple String calculator with a method int Add(string numbers)
       * The method can take 0, 1 or 2 numbers, and will return their sum (for an empty string it will return 0) for example “” or “1” or “1,2”
@@ -22,7 +20,7 @@ stop here if you are a beginner. Continue if you can finish the steps so far in 
 9. make sure you can also handle multiple delimiters with length longer than one char
 
 #### 결과 스크린샷
-![Screenshot](/chapter-1/kata-practice/kata-1-string-calculator-screenshot.png)
+![Screenshot](/string_calculator/kata-1-string-calculator-screenshot.png)
 
 #### 참고 링크
 http://osherove.com/tdd-kata-1/
