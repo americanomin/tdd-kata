@@ -1,8 +1,10 @@
 class BowlingGame:
+    def __init__(self):
+        self.rolls = []
 
     def roll(self, pins):
-        pass
+        self.rolls.append(pins)
 
     @property
     def score(self):
-        return 0
+        return sum(self.rolls)
