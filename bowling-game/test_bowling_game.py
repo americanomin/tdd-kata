@@ -19,6 +19,14 @@ class TestBowlingGame:
         self.roll_many(0, 17)
         assert self.bowling_game.score == 16
 
+    def test_score_1번_스트라이크를_했고_이후에_3개_4개의_핀을_쓰러트린_경우_스코어는_24점이다(self):
+        self.roll_strike()
+        self.bowling_game.roll(3)
+        self.bowling_game.roll(4)
+
+        self.roll_many(0, 16)
+        assert self.bowling_game.score == 24
+
     def roll_many(self, pins, times):
         for i in range(times):
             self.bowling_game.roll(pins)
@@ -26,3 +34,6 @@ class TestBowlingGame:
     def roll_spare(self):
         self.bowling_game.roll(5)
         self.bowling_game.roll(5)
+
+    def roll_strike(self):
+        self.bowling_game.roll(10)
