@@ -7,17 +7,17 @@ class TestBowlingGame:
 
     def test_score_핀을_1개도_쓰러트리지_못한_경우_스코어는_0점이다(self):
         self.roll_many(0, 20)
-        assert self.bowling_game.score == 0
+        assert self.bowling_game.score() == 0
 
     def test_score_핀을_20번_연속으로_1개씩_쓰러트린_경우_스코어는_20점이다(self):
         self.roll_many(1, 20)
-        assert self.bowling_game.score == 20
+        assert self.bowling_game.score() == 20
 
     def test_score_1번_스페어처리를_하고_3개의_핀을_쓰러트린_경우_스코어는_16점이다(self):
         self.roll_spare()
         self.bowling_game.roll(3)
         self.roll_many(0, 17)
-        assert self.bowling_game.score == 16
+        assert self.bowling_game.score() == 16
 
     def test_score_1번_스트라이크를_했고_이후에_3개_4개의_핀을_쓰러트린_경우_스코어는_24점이다(self):
         self.roll_strike()
@@ -25,7 +25,7 @@ class TestBowlingGame:
         self.bowling_game.roll(4)
 
         self.roll_many(0, 16)
-        assert self.bowling_game.score == 24
+        assert self.bowling_game.score() == 24
 
     def test_score_첫번째_프레임의_두번째_투구에서_스트라이크를_했고_이후에_3개_4개의_핀을_쓰러트린_경우_스코어는_24점이다(self):
         self.bowling_game.roll(0)
@@ -34,7 +34,11 @@ class TestBowlingGame:
         self.bowling_game.roll(4)
 
         self.roll_many(0, 16)
-        assert self.bowling_game.score == 24
+        assert self.bowling_game.score() == 24
+
+    def test_score_퍼펙트_게임인_경우_스코어는_300점이다(self):
+        self.roll_many(10, 12)
+        assert self.bowling_game.score() == 300
 
     def roll_many(self, pins, times):
         for i in range(times):
