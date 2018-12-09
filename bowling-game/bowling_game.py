@@ -15,12 +15,15 @@ class BowlingGame:
         roll_index = 0
         for frame_index in range(0, self.TOTAL_FRAME_COUNT):
             frame_score = self.__rolls[roll_index] + self.__rolls[roll_index + 1]
-            if self.__is_spare_score(roll_index):
+            if self.__is_strike_score(roll_index):
+                frame_score += self.__rolls[roll_index+2] + self.__rolls[roll_index+3]
+                if (self.__rolls[roll_index] == self.SPARE_SCORE):
+                    roll_index += 1
+                else:
+                    roll_index += 2
+            elif self.__is_spare_score(roll_index):
                 frame_score += self.__rolls[roll_index+2]
                 roll_index += 2
-            elif self.__is_strike_score(roll_index):
-                frame_score += self.__rolls[roll_index+2] + self.__rolls[roll_index+3]
-                roll_index += 1
             else:
                 roll_index += 2
 
@@ -31,4 +34,4 @@ class BowlingGame:
         return (self.__rolls[roll_index] + self.__rolls[roll_index + 1]) == self.SPARE_SCORE
 
     def __is_strike_score(self, roll_index):
-        return self.__rolls[roll_index] == self.SPARE_SCORE
+        return (self.__rolls[roll_index] == self.SPARE_SCORE) or (self.__rolls[roll_index + 1] == self.SPARE_SCORE)
